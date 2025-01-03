@@ -1,0 +1,113 @@
+@charset "UTF-8";   /* html파일의 인코딩 방식을 적용한다는 뜻 */
+
+body, ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+a {
+    color: inherit; /* 부모 element를 값을 물려받기기 */
+    text-decoration: none;
+}
+
+body {  /* 스크롤 생성을 위해 웹사이트 높이를 5000px로 만들기기 */
+    height: 5000px;
+    background-color: #444;
+}
+
+:root { /* css 변수 정의 */
+    --sidebar-width: 15%;
+    --sidebar-hight: 100%;
+}
+
+div[class = "sidebar"] {
+    position: fixed; /* 스크롤을 내려도 고정되게하기 */
+    width: var(--sidebar-width);
+    height: var(--sidebar-hight);
+    background-color: black;
+    left: -15%; /* 왼쪽으로 숨기기 */
+    z-index: 1; /* 화면 가장 아래에 보이게하기 */
+    transition: all 0.35s;  /* 모든 속성에 0.35초 동안 적용 */
+}
+
+input[id = "menuicon"]:checked + label + div {
+    left: 0;    /* 왼쪽으로 나타나게하기 */
+}
+
+.sidebar ul {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar ul > li {
+    flex: 0;    /* flex-grow, flex-shrink, flex-basis를 0으로 설정 */
+}
+
+.sidebar ul > li > a {  /* sidebar의 ul태그의 li태그의 a태그에 스타일 적용 */
+    display: flex;
+    color: white;
+    font-size: clamp(0.7rem, 2vw, 1.6rem);  /* 최소 0.7rem, 최대 2vw, 기본 1.8rem */
+    font-weight: bold;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar ul > .logout {
+    margin-top: auto;   /* margin-top을 auto로 설정하여 아래로 내리기 */
+}
+
+.sidebar ul > .logout > a {
+    font-weight: normal;
+}
+
+input[id = "menuicon"] {    /* input태그의 id가 menuicon인 것에 스타일 적용 */
+    display: none;
+}
+
+input[id = "menuicon"] + label {    /* input태그의 id가 menuicon인 것의 다음 label태그에 스타일 적용 */
+    display: block;
+    width: 3%;
+    height: 3%;
+    position: fixed;
+    top: 1%;
+    left: 0.8%;
+    cursor: pointer;
+    z-index: 2; /* 화면 가장 위에 보이게하기 */
+}
+
+input[id = "menuicon"] + label span {   /* input태그의 id가 menuicon인 것의 다음 label태그의 span태그에 스타일 적용 */
+    display: block;
+    position: absolute;
+    height: 5px;
+    width: 75%;
+    background: white;
+    border-radius: 30px;
+    transition: all 0.35s;
+}
+
+input[id = "menuicon"] + label span:nth-child(1) {  /* input태그의 id가 menuicon인 것의 다음 label태그의 span태그의 첫번째 자식에 스타일 적용 */
+    top: 0;
+}
+input[id = "menuicon"] + label span:nth-child(2) {  /* input태그의 id가 menuicon인 것의 다음 label태그의 span태그의 두번째 자식에 스타일 적용 */
+    top: 50%;
+    transform: translateY(-50%);
+}
+input[id = "menuicon"] + label span:nth-child(3) {  /* input태그의 id가 menuicon인 것의 다음 label태그의 span태그의 세번째 자식에 스타일 적용 */
+    bottom: 0;
+}
+
+input[id = "menuicon"]:checked + label span:nth-child(1) {  /* input태그의 id가 menuicon인 것이 체크되었을 때의 다음 label태그의 span태그의 첫번째 자식에 스타일 적용 */
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+}
+input[id = "menuicon"]:checked + label span:nth-child(2) {  /* input태그의 id가 menuicon인 것이 체크되었을 때의 다음 label태그의 span태그의 두번째 자식에 스타일 적용 */
+    opacity: 0;
+}
+input[id = "menuicon"]:checked + label span:nth-child(3) {  /* input태그의 id가 menuicon인 것이 체크되었을 때의 다음 label태그의 span태그의 세번째 자식에 스타일 적용 */
+    bottom: 50%;
+    transform: translateY(50%) rotate(-45deg);
+}
