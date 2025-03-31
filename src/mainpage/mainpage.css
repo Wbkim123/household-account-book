@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+body, html  {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: gray;
+}
+
+.content-container {
+    display: flex;
+    width: 80%;
+    height: 60%;
+    margin: 45vh auto 0 auto;
+    transform: translateY(-50%);
+    gap: 8%;
+    transition: margin-left 0.4s ease;
+}
+
+
+.left-box, .right-box {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.left-box {
+    background-color: white;
+    border-right: 1px solid #ccc;
+}
+
+.right-box {
+    background-color: #f0f0f0;
+}
