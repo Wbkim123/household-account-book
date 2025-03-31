@@ -13,7 +13,7 @@ a {
 
 body {  /* 스크롤 생성을 위해 웹사이트 높이를 5000px로 만들기기 */
     height: 5000px;
-    background-color: #444;
+    transition: margin-left 0.40s ease; /* 부드러운 애니메이션 효과 */
 }
 
 :root { /* css 변수 정의 */
@@ -21,18 +21,23 @@ body {  /* 스크롤 생성을 위해 웹사이트 높이를 5000px로 만들기
     --sidebar-hight: 100%;
 }
 
+body.sidebar-open {
+    margin-left: var(--sidebar-width); /* 사이드바 너비만큼 페이지를 오른쪽으로 밀림 */
+}
+
 div[class = "sidebar"] {
     position: fixed; /* 스크롤을 내려도 고정되게하기 */
+    left: 0;
     width: var(--sidebar-width);
     height: var(--sidebar-hight);
     background-color: black;
-    left: -15%; /* 왼쪽으로 숨기기 */
+    transform: translateX(-100%); /* 왼쪽으로 숨기기 */
     z-index: 1; /* 화면 가장 아래에 보이게하기 */
-    transition: all 0.35s;  /* 모든 속성에 0.35초 동안 적용 */
+    transition: all 0.40s ease;  /* 모든 속성에 0.35초 동안 적용 */
 }
 
 input[id = "menuicon"]:checked + label + div {
-    left: 0;    /* 왼쪽으로 나타나게하기 */
+    transform: translateX(0); /* 왼쪽으로 나타나게하기 */
 }
 
 .sidebar ul {
@@ -84,7 +89,7 @@ input[id = "menuicon"] + label span {   /* input태그의 id가 menuicon인 것�
     position: absolute;
     height: 5px;
     width: 75%;
-    background: white;
+    background: green;
     border-radius: 30px;
     transition: all 0.35s;
 }
